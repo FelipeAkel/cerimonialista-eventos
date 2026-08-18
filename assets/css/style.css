@@ -1,0 +1,111 @@
+:root {
+  --brand-surface: rgba(10, 10, 12, 0.72);
+  --brand-surface-strong: rgba(8, 8, 10, 0.9);
+  --brand-text: #ffffff;
+  --progress-height: 5px;
+}
+
+* { box-sizing: border-box; }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: var(--brand-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.exhibition-screen {
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+}
+
+.media-stage,
+.media-item,
+.media-item img,
+.media-item video {
+  width: 100%;
+  height: 100%;
+}
+
+.media-item {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+
+.media-item.active { opacity: 1; }
+
+.media-item img,
+.media-item video {
+  object-fit: cover;
+  display: block;
+}
+
+.media-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.45) 0%, rgba(0,0,0,.05) 35%, rgba(0,0,0,.1) 65%, rgba(0,0,0,.65) 100%);
+  pointer-events: none;
+}
+
+.media-caption {
+  position: absolute;
+  left: clamp(1.5rem, 4vw, 4rem);
+  bottom: clamp(7.5rem, 16vh, 10rem);
+  z-index: 3;
+  max-width: min(760px, 75vw);
+  text-shadow: 0 2px 14px rgba(0,0,0,.65);
+}
+
+.top-overlay { z-index: 4; pointer-events: none; }
+
+.bottom-bar {
+  z-index: 5;
+  background: var(--brand-surface-strong);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255,255,255,.12);
+}
+
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  padding: 6px;
+  background: rgba(255,255,255,.95);
+  border-radius: 12px;
+}
+
+.slide-progress {
+  z-index: 6;
+  bottom: 0;
+  height: var(--progress-height);
+  background: rgba(255,255,255,.12);
+}
+
+.slide-progress .progress-bar {
+  transition: none;
+  background: rgba(255,255,255,.9);
+}
+
+.empty-state {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 3rem;
+  text-align: center;
+  background: radial-gradient(circle at center, #282828 0%, #050505 75%);
+}
+
+@media (max-width: 767.98px) {
+  .top-overlay { padding: 1.25rem !important; }
+  .top-overlay h1 { font-size: 2rem; }
+  .media-caption { bottom: 11rem; max-width: 88vw; }
+  .bottom-bar { font-size: .92rem; }
+}
