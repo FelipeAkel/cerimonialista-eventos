@@ -19,7 +19,7 @@ const playlist = [
 
   {
     type: "video",
-    src: "assets/img/videos/felipe-akel-laravel.mp4",
+    src: "assets/img/videos/laravel-video.mp4",
     title: "Cerimonial de Casamento",
     subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção.",
     show: true,
@@ -42,7 +42,7 @@ const playlist = [
 
   {
     type: "video",
-    src: "assets/img/videos/api-angula.mp4",
+    src: "assets/img/videos/laravel-video.mp4",
     title: "Planejamento e Assessoria",
     subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento.",
     show: true,
