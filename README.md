@@ -67,7 +67,7 @@ Depois, acesse `http://localhost:8000` no navegador.
 
 ### Instalar como aplicativo (PWA)
 
-O PWA precisa ser acessado por `http://localhost` ou por um endereço publicado com HTTPS; abrir `index.html` diretamente não permite registrar o modo offline. No Chrome ou Edge, abra o menu do navegador e escolha **Instalar Cerimonial e Eventos**. Depois de instalado, o projeto abre em uma janela própria, sem a barra de endereço.
+O PWA precisa ser acessado por `http://localhost` ou por um endereço publicado com HTTPS; abrir `index.html` diretamente não permite registrar o modo offline. No Chrome ou Edge, abra o menu do navegador e escolha **Instalar Cerimonial e Eventos**. Depois de instalado, o projeto abre em tela cheia, sem a barra de endereço. Se uma versão anterior já estiver instalada, remova-a e instale novamente para aplicar o novo modo de exibição.
 
 Os arquivos essenciais ficam disponíveis offline após o primeiro carregamento. Fotos e outros recursos são armazenados conforme forem exibidos, evitando um download inicial muito pesado. Vídeos que usam carregamento parcial continuam dependendo da conexão.
 
