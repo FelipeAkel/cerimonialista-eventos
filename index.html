@@ -2,64 +2,187 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Exposição - Cliente</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <title>Nome da Empresa | Cerimonial e Eventos</title>
+
+  <link
+    href="assets/css/bootstrap.css"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="assets/css/style.css"
+  >
 </head>
+
 <body>
+
   <main class="exhibition-screen position-relative overflow-hidden">
-    <section id="mediaStage" class="media-stage" aria-label="Apresentação de mídia">
-      <!-- O conteúdo é controlado pelo JavaScript -->
+
+    <!-- Área principal controlada pelo JavaScript -->
+    <section
+      id="mediaStage"
+      class="media-stage"
+      aria-label="Apresentação de serviços e eventos"
+    >
     </section>
 
-    <div class="top-overlay position-absolute top-0 start-0 w-100 p-4 p-lg-5">
+
+    <!-- Cabeçalho -->
+    <header
+      class="top-overlay position-absolute top-0 start-0 w-100 p-4 p-lg-5"
+    >
       <div class="container-fluid px-0">
-        <div class="d-flex justify-content-between align-items-start gap-3">
+
+        <div
+          class="d-flex justify-content-between align-items-start gap-3"
+        >
+
           <div>
-            <span class="badge rounded-pill text-bg-light mb-2">EXPOSIÇÃO</span>
-            <h1 class="display-5 fw-bold mb-1">Nome da Empresa</h1>
-            <p class="lead mb-0 opacity-75">Trabalho, serviços e projetos em destaque</p>
-          </div>
-          <div class="d-none d-md-block text-end">
-            <small class="text-uppercase opacity-50">Apresentação automática</small>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <footer class="bottom-bar position-absolute bottom-0 start-0 w-100">
+            <h1 class="display-5 fw-bold mb-1">
+              Nome da Empresa
+            </h1>
+
+            <p class="lead mb-0 opacity-75">
+              Cerimonial • Eventos • Celebrações
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </header>
+
+
+    <!-- Rodapé -->
+    <footer
+      class="bottom-bar position-absolute bottom-0 start-0 w-100"
+    >
+
       <div class="container-fluid px-4 px-lg-5 py-3">
+
         <div class="row align-items-center g-3">
+
+
+          <!-- Logo -->
           <div class="col-12 col-md-4">
+
             <div class="d-flex align-items-center gap-3">
-              <img src="assets/img/logo-placeholder.svg" class="brand-logo" alt="Logo da empresa">
+
+              <img
+                src="assets/img/logo-placeholder.svg"
+                class="brand-logo"
+                alt="Logo da empresa"
+              >
+
               <div>
-                <div class="fw-semibold">Nome da Empresa</div>
-                <small class="opacity-75">Sua mensagem ou slogan</small>
+
+                <div class="fw-semibold">
+                  Nome da Empresa
+                </div>
+
+                <small class="opacity-75">
+                  Transformamos momentos em memórias inesquecíveis.
+                </small>
+
               </div>
+
             </div>
+
           </div>
 
+
+          <!-- Contatos -->
           <div class="col-12 col-md-5 text-md-center">
-            <span class="me-3">@instagram</span>
-            <span>(61) 99999-9999</span>
+
+            <span class="me-3">
+              @instagram
+            </span>
+
+            <span>
+              <a
+                href="https://wa.me/5561991939043"
+                class="t-branco"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir conversa no WhatsApp"
+              >
+              (61) 99193-9043
+              </a>
+            </span>
+
           </div>
 
-          <div class="col-12 col-md-3 text-md-end">
-            <span class="badge rounded-pill text-bg-light text-dark px-3 py-2">Aponte a câmera para o QR Code</span>
+          <!-- QR Code -->
+          <div class="col-12 col-md-3">
+
+            <div
+              class="d-flex justify-content-md-end align-items-center gap-3"
+            >
+
+              <div class="text-md-end d-none d-lg-block">
+
+                <small class="d-block opacity-75">
+                  Planejando um evento?
+                </small>
+
+                <strong>
+                  Solicite seu orçamento
+                </strong>
+
+              </div>
+
+              <a
+                href="https://wa.me/5561991939043"
+                class="qr-code"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Abrir conversa no WhatsApp"
+              >
+                <div id="whatsappQrCode" aria-hidden="true"></div>
+              </a>
+
+            </div>
+
           </div>
+
         </div>
+
       </div>
+
     </footer>
 
-    <div class="progress position-absolute start-0 w-100 rounded-0 slide-progress" role="progressbar" aria-label="Progresso da mídia">
-      <div id="mediaProgress" class="progress-bar" style="width: 0%"></div>
+
+    <!-- Barra de progresso -->
+    <div
+      class="progress position-absolute start-0 w-100 rounded-0 slide-progress"
+      role="progressbar"
+      aria-label="Progresso da apresentação"
+    >
+
+      <div
+        id="mediaProgress"
+        class="progress-bar"
+        style="width: 0%"
+      >
+      </div>
+
     </div>
+
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/qrcode.js"></script>
   <script src="assets/js/app.js"></script>
+
 </body>
 </html>

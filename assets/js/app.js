@@ -9,30 +9,103 @@
 const playlist = [
   {
     type: "image",
-    src: "assets/media/foto-01.svg",
-    duration: 7000,
-    title: "Projetos que ganham destaque",
-    subtitle: "Substitua esta imagem pelas fotos fornecidas pelo cliente."
+    src: "assets/img/fotos/cerimonial.jpg",
+    duration: 8000,
+    title: "Transformamos momentos em memórias inesquecíveis",
+    subtitle: "Cerimonial, eventos e celebrações planejadas em cada detalhe."
   },
-  {
-    type: "image",
-    src: "assets/media/foto-02.svg",
-    duration: 7000,
-    title: "Serviços apresentados com clareza",
-    subtitle: "Você pode alterar textos, tempo de exibição e ordem dos itens."
-  },
+
   {
     type: "video",
-    src: "assets/media/video-exemplo.mp4",
-    title: "Vídeo institucional",
-    subtitle: "Adicione um MP4 neste caminho. Caso o arquivo não exista, o player avança automaticamente."
+    src: "assets/img/videos/api-angula.mp4",
+    duration: 7000,
+    title: "Cerimonial de Casamento",
+    subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção."
   },
+
   {
     type: "image",
-    src: "assets/media/foto-03.svg",
+    src: "assets/img/fotos/cerimonia-igreja.jpg",
     duration: 7000,
-    title: "Contato sempre visível",
-    subtitle: "Logo, Instagram, WhatsApp e chamada para QR Code permanecem na parte inferior."
+    title: "Cerimônia Religiosa ou Civil",
+    subtitle: "Organização do cortejo, padrinhos, daminhas, alianças, músicos e celebrante."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/recepcao-festa.jpg",
+    title: "Recepção e Festa",
+    subtitle: "Coordenamos cada momento para que você aproveite a sua celebração."
+  },
+
+  {
+    type: "video",
+    src: "assets/img/videos/felipe-akel-laravel.mp4",
+    duration: 7000,
+    title: "Planejamento e Assessoria",
+    subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/decoracao.jpg",
+    duration: 7000,
+    title: "Decoração e Ambientação",
+    subtitle: "Cada detalhe pensado para transformar espaços e contar a sua história."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/dj-musica.jpg",
+    title: "Música e Entretenimento",
+    subtitle: "DJ, músicos, bandas, sonorização, iluminação e atrações para sua festa."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/buffet.jpg",
+    duration: 7000,
+    title: "Buffet e Gastronomia",
+    subtitle: "Buffet, doces, bolo, bebidas, garçons e experiências gastronômicas."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/fotografia.jpg",
+    duration: 7000,
+    title: "Fotografia e Filmagem",
+    subtitle: "Profissionais para registrar cada sorriso, abraço e emoção."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/fornecedores.jpg",
+    duration: 7000,
+    title: "Gestão de Fornecedores",
+    subtitle: "Selecionamos e coordenamos profissionais para que tudo aconteça em perfeita sintonia."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/aniversario.jpg",
+    duration: 7000,
+    title: "Festas e Celebrações",
+    subtitle: "Aniversários, bodas, formaturas, confraternizações e momentos especiais."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/melhores-momentos.jpg",
+    title: "Você celebra. Nós cuidamos dos detalhes.",
+    subtitle: "Do planejamento ao último momento da festa."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/contato.jpg",
+    duration: 9000,
+    title: "Seu próximo momento inesquecível começa aqui",
+    subtitle: "Entre em contato e conte-nos como você imagina a sua celebração."
   }
 ];
 
@@ -64,7 +137,7 @@ function createMediaElement(item) {
     const video = document.createElement("video");
     video.src = item.src;
     video.autoplay = true;
-    video.muted = true;
+    video.muted = false;
     video.playsInline = true;
     video.preload = "auto";
 
@@ -163,5 +236,18 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === " ") nextItem();
   if (event.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
 });
+
+const whatsappQrCode = document.getElementById("whatsappQrCode");
+
+if (whatsappQrCode) {
+  new QRCode(whatsappQrCode, {
+    text: "https://wa.me/5561991939043",
+    width: 72,
+    height: 72,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+}
 
 startPresentation();

@@ -82,6 +82,21 @@ body {
   border-radius: 12px;
 }
 
+.qr-code {
+  display: inline-block;
+  padding: 6px;
+  background: #fff;
+  border-radius: 8px;
+  line-height: 0;
+}
+
+.qr-code img,
+.qr-code canvas {
+  display: block;
+  width: 72px;
+  height: 72px;
+}
+
 .slide-progress {
   z-index: 6;
   bottom: 0;
@@ -103,9 +118,35 @@ body {
   background: radial-gradient(circle at center, #282828 0%, #050505 75%);
 }
 
+.t-branco {
+  color: var(--brand-text);
+  text-decoration: none;  
+}
+
 @media (max-width: 767.98px) {
   .top-overlay { padding: 1.25rem !important; }
   .top-overlay h1 { font-size: 2rem; }
-  .media-caption { bottom: 11rem; max-width: 88vw; }
+  .media-caption { bottom: 7.5rem; max-width: 88vw; }
   .bottom-bar { font-size: .92rem; }
+
+  .bottom-bar .row {
+    flex-wrap: nowrap;
+  }
+
+  .bottom-bar .row > div:first-child {
+    display: none;
+  }
+
+  .bottom-bar .col-12 {
+    width: auto;
+  }
+
+  .bottom-bar .col-12:nth-child(2) {
+    flex: 1 1 auto;
+    text-align: left;
+  }
+
+  .bottom-bar .col-12:last-child {
+    flex: 0 0 auto;
+  }
 }
