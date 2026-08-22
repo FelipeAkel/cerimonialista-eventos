@@ -110,12 +110,29 @@ const playlist = [
 const stage = document.getElementById("mediaStage");
 const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
+const soundToggle = document.getElementById("soundToggle");
 
 let currentIndex = -1;
 let activeElement = null;
 let timerId = null;
 let captionTimerId = null;
 let progressFrame = null;
+let soundControlTimerId = null;
+let soundEnabled = false;
+
+function applySoundState(video) {
+  if (!video) return;
+
+  video.defaultMuted = !soundEnabled;
+  video.muted = !soundEnabled;
+  video.volume = 1;
+
+  if (soundEnabled) {
+    video.removeAttribute("muted");
+  } else {
+    video.setAttribute("muted", "");
+  }
+}
 
 function createCaption(item) {
   if (item.show === false || (!item.title && !item.subtitle)) return null;
@@ -137,9 +154,9 @@ function createMediaElement(item) {
     const video = document.createElement("video");
     video.src = item.src;
     video.autoplay = true;
-    video.muted = false;
     video.playsInline = true;
-    video.preload = "auto";
+    video.preload = "metadata";
+    applySoundState(video);
 
     video.addEventListener("ended", nextItem, { once: true });
     video.addEventListener("error", () => {
@@ -252,6 +269,51 @@ function startPresentation() {
 
   showItem(0);
 }
+
+function showSoundControl() {
+  if (!soundToggle) return;
+
+  soundToggle.classList.add("is-visible");
+  clearTimeout(soundControlTimerId);
+  soundControlTimerId = setTimeout(() => {
+    if (document.activeElement !== soundToggle) {
+      soundToggle.classList.remove("is-visible");
+    }
+  }, 3000);
+}
+
+function updateSoundControl() {
+  if (!soundToggle) return;
+
+  const label = soundEnabled ? "Desativar som" : "Ativar som";
+  soundToggle.classList.toggle("sound-enabled", soundEnabled);
+  soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+  soundToggle.setAttribute("aria-label", label);
+  soundToggle.title = label;
+}
+
+soundToggle?.addEventListener("click", () => {
+  soundEnabled = !soundEnabled;
+
+  document.querySelectorAll(".media-item video").forEach((video) => {
+    applySoundState(video);
+
+    if (soundEnabled) {
+      video.play().catch((error) => {
+        console.warn("O navegador bloqueou a reprodução com som:", error);
+      });
+    }
+  });
+
+  updateSoundControl();
+  showSoundControl();
+});
+
+document.addEventListener("mousemove", showSoundControl, { passive: true });
+document.addEventListener("touchstart", showSoundControl, { passive: true });
+soundToggle?.addEventListener("focus", showSoundControl);
+
+updateSoundControl();
 
 // Atalhos úteis durante a exposição.
 document.addEventListener("keydown", (event) => {

@@ -77,6 +77,57 @@ body {
 
 .top-overlay { z-index: 4; pointer-events: none; }
 
+.sound-toggle {
+  position: fixed;
+  top: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  z-index: 7;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  place-items: center;
+  color: #fff;
+  background: rgba(8, 8, 10, .68);
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 50%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: opacity 250ms ease, visibility 250ms ease, background-color 250ms ease;
+}
+
+.sound-toggle.is-visible,
+.sound-toggle:focus-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.sound-toggle:hover,
+.sound-toggle:focus-visible {
+  background: rgba(8, 8, 10, .9);
+  outline: 2px solid rgba(255, 255, 255, .8);
+  outline-offset: 3px;
+}
+
+.sound-icon {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sound-icon-on,
+.sound-toggle.sound-enabled .sound-icon-muted { display: none; }
+
+.sound-toggle.sound-enabled .sound-icon-on { display: block; }
+
 .bottom-bar {
   z-index: 5;
   background: var(--brand-surface-strong);
