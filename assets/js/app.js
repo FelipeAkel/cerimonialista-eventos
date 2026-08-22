@@ -3,30 +3,32 @@
  *
  * type: "image" ou "video"
  * src: caminho do arquivo
- * duration: duração em milissegundos para imagens
+ * duration: duração da mídia em segundos (padrão para imagens: 7)
  * title / subtitle: textos opcionais sobre a mídia
+ * show: exibe ou oculta title e subtitle (padrão: true)
+ * showTime: tempo, em segundos, antes de ocultar title e subtitle
  */
 const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/cerimonial.jpg",
-    duration: 8000,
+    duration: 8,
     title: "Transformamos momentos em memórias inesquecíveis",
     subtitle: "Cerimonial, eventos e celebrações planejadas em cada detalhe."
   },
 
   {
     type: "video",
-    src: "assets/img/videos/api-angula.mp4",
-    duration: 7000,
+    src: "assets/img/videos/felipe-akel-laravel.mp4",
     title: "Cerimonial de Casamento",
-    subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção."
+    subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção.",
+    show: true,
+    showTime: 7
   },
 
   {
     type: "image",
     src: "assets/img/fotos/cerimonia-igreja.jpg",
-    duration: 7000,
     title: "Cerimônia Religiosa ou Civil",
     subtitle: "Organização do cortejo, padrinhos, daminhas, alianças, músicos e celebrante."
   },
@@ -35,21 +37,21 @@ const playlist = [
     type: "image",
     src: "assets/img/fotos/recepcao-festa.jpg",
     title: "Recepção e Festa",
-    subtitle: "Coordenamos cada momento para que você aproveite a sua celebração."
+    subtitle: "Coordenamos cada momento para que você aproveite a sua celebração.",
   },
 
   {
     type: "video",
-    src: "assets/img/videos/felipe-akel-laravel.mp4",
-    duration: 7000,
+    src: "assets/img/videos/api-angula.mp4",
     title: "Planejamento e Assessoria",
-    subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento."
+    subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento.",
+    show: true,
+    showTime: 7
   },
 
   {
     type: "image",
     src: "assets/img/fotos/decoracao.jpg",
-    duration: 7000,
     title: "Decoração e Ambientação",
     subtitle: "Cada detalhe pensado para transformar espaços e contar a sua história."
   },
@@ -64,7 +66,6 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/buffet.jpg",
-    duration: 7000,
     title: "Buffet e Gastronomia",
     subtitle: "Buffet, doces, bolo, bebidas, garçons e experiências gastronômicas."
   },
@@ -72,7 +73,6 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/fotografia.jpg",
-    duration: 7000,
     title: "Fotografia e Filmagem",
     subtitle: "Profissionais para registrar cada sorriso, abraço e emoção."
   },
@@ -80,7 +80,6 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/fornecedores.jpg",
-    duration: 7000,
     title: "Gestão de Fornecedores",
     subtitle: "Selecionamos e coordenamos profissionais para que tudo aconteça em perfeita sintonia."
   },
@@ -88,7 +87,6 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/aniversario.jpg",
-    duration: 7000,
     title: "Festas e Celebrações",
     subtitle: "Aniversários, bodas, formaturas, confraternizações e momentos especiais."
   },
@@ -103,7 +101,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/contato.jpg",
-    duration: 9000,
+    duration: 9,
     title: "Seu próximo momento inesquecível começa aqui",
     subtitle: "Entre em contato e conte-nos como você imagina a sua celebração."
   }
@@ -111,17 +109,19 @@ const playlist = [
 
 const stage = document.getElementById("mediaStage");
 const progressBar = document.getElementById("mediaProgress");
+const companyInfo = document.getElementById("companyInfo");
 
 let currentIndex = -1;
 let activeElement = null;
 let timerId = null;
+let captionTimerId = null;
 let progressFrame = null;
 
 function createCaption(item) {
-  if (!item.title && !item.subtitle) return null;
+  if (item.show === false || (!item.title && !item.subtitle)) return null;
 
   const caption = document.createElement("div");
-  caption.className = "media-caption";
+  caption.className = "media-caption text-fade";
   caption.innerHTML = `
     ${item.title ? `<h2 class="display-4 fw-bold mb-2">${item.title}</h2>` : ""}
     ${item.subtitle ? `<p class="fs-4 mb-0 opacity-75">${item.subtitle}</p>` : ""}
@@ -178,6 +178,7 @@ function animateProgress(duration) {
 
 function showItem(index) {
   clearTimeout(timerId);
+  clearTimeout(captionTimerId);
   cancelAnimationFrame(progressFrame);
   progressBar.style.width = "0%";
 
@@ -196,12 +197,33 @@ function showItem(index) {
 
   activeElement = nextElement;
 
+  const caption = nextElement.querySelector(".media-caption");
+  const showTime = Number(item.showTime);
+  const textElements = [caption, companyInfo].filter(Boolean);
+
+  companyInfo?.classList.toggle("is-hidden", item.show === false);
+
+  if (item.show !== false && Number.isFinite(showTime) && showTime > 0) {
+    captionTimerId = setTimeout(() => {
+      textElements.forEach((element) => element.classList.add("is-hidden"));
+    }, showTime * 1000);
+  }
+
   if (item.type === "image") {
-    const duration = item.duration || 7000;
-    animateProgress(duration);
-    timerId = setTimeout(nextItem, duration);
+    const duration = Number(item.duration) || 7;
+    const durationMs = duration * 1000;
+    animateProgress(durationMs);
+    timerId = setTimeout(nextItem, durationMs);
   } else {
     const video = nextElement.querySelector("video");
+
+    if (Number(item.duration) > 0) {
+      const durationMs = Number(item.duration) * 1000;
+      animateProgress(durationMs);
+      timerId = setTimeout(nextItem, durationMs);
+      return;
+    }
+
     video.addEventListener("loadedmetadata", () => {
       if (Number.isFinite(video.duration) && video.duration > 0) {
         animateProgress(video.duration * 1000);
