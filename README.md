@@ -21,6 +21,7 @@ A playlist alterna automaticamente entre imagens e vídeos, exibe títulos e des
 - rodapé com marca, contatos, WhatsApp e QR Code;
 - layout responsivo para TVs, totens, tablets e celulares;
 - funcionamento local, sem dependência obrigatória de internet.
+- instalação como PWA, com abertura em janela própria e cache offline dos recursos já acessados.
 
 ## Tecnologias utilizadas
 
@@ -63,6 +64,12 @@ python -m http.server 8000
 ```
 
 Depois, acesse `http://localhost:8000` no navegador.
+
+### Instalar como aplicativo (PWA)
+
+O PWA precisa ser acessado por `http://localhost` ou por um endereço publicado com HTTPS; abrir `index.html` diretamente não permite registrar o modo offline. No Chrome ou Edge, abra o menu do navegador e escolha **Instalar Cerimonial e Eventos**. Depois de instalado, o projeto abre em uma janela própria, sem a barra de endereço.
+
+Os arquivos essenciais ficam disponíveis offline após o primeiro carregamento. Fotos e outros recursos são armazenados conforme forem exibidos, evitando um download inicial muito pesado. Vídeos que usam carregamento parcial continuam dependendo da conexão.
 
 Durante o evento:
 

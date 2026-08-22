@@ -112,6 +112,14 @@ const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
 const soundToggle = document.getElementById("soundToggle");
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch((error) => {
+      console.warn("Nao foi possivel registrar o modo offline:", error);
+    });
+  });
+}
+
 let currentIndex = -1;
 let activeElement = null;
 let timerId = null;
