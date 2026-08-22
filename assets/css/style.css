@@ -21,6 +21,7 @@ body {
 .exhibition-screen {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: #000;
 }
 
@@ -188,11 +189,27 @@ body {
 @media (max-width: 767.98px) {
   .top-overlay { padding: 1.25rem !important; }
   .top-overlay h1 { font-size: 2rem; }
-  .media-caption { bottom: 7.5rem; max-width: 88vw; }
+  .media-caption {
+    right: 1.25rem;
+    bottom: 7rem;
+    left: 1.25rem;
+    max-width: none;
+    overflow-wrap: anywhere;
+  }
+
+  .media-caption h2 { font-size: clamp(1.75rem, 8vw, 2.25rem); }
+  .media-caption p { font-size: clamp(1rem, 4.5vw, 1.25rem) !important; }
   .bottom-bar { font-size: .92rem; }
 
+  .bottom-bar .container-fluid {
+    padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)) !important;
+  }
+
   .bottom-bar .row {
-    flex-wrap: nowrap;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .75rem;
+    margin: 0;
   }
 
   .bottom-bar .row > div:first-child {
@@ -201,14 +218,34 @@ body {
 
   .bottom-bar .col-12 {
     width: auto;
+    padding: 0;
   }
 
   .bottom-bar .col-12:nth-child(2) {
-    flex: 1 1 auto;
+    min-width: 0;
     text-align: left;
   }
 
-  .bottom-bar .col-12:last-child {
-    flex: 0 0 auto;
+  .bottom-bar .col-12:nth-child(2) span {
+    display: block;
+    margin-right: 0 !important;
+    white-space: nowrap;
+  }
+
+  .qr-code img,
+  .qr-code canvas {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .bottom-bar .container-fluid { padding-inline: .75rem !important; }
+  .qr-code { padding: 5px; }
+
+  .qr-code img,
+  .qr-code canvas {
+    width: 56px;
+    height: 56px;
   }
 }
