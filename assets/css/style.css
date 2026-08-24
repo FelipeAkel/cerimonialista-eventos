@@ -134,6 +134,35 @@ body {
   background: var(--brand-surface-strong);
   backdrop-filter: blur(10px);
   border-top: 1px solid rgba(255,255,255,.12);
+  transition: background-color 300ms ease, border-color 300ms ease;
+}
+
+.footer-info-hidden .bottom-bar {
+  pointer-events: none;
+  background: transparent;
+  backdrop-filter: none;
+  border-top-color: transparent;
+}
+
+.footer-info-hidden .bottom-bar .container-fluid {
+  padding-top: 0 !important;
+  padding-bottom: calc(.75rem + env(safe-area-inset-bottom)) !important;
+}
+
+.footer-info-hidden .bottom-bar .row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-info-hidden .qr-column {
+  width: auto;
+  pointer-events: auto;
+}
+
+.footer-info-hidden .media-caption {
+  right: clamp(7.5rem, 12vw, 9rem);
+  bottom: clamp(1.5rem, 4vh, 3rem);
+  max-width: min(760px, calc(100vw - 11rem));
 }
 
 .brand-logo {
@@ -201,6 +230,12 @@ body {
   .media-caption p { font-size: clamp(1rem, 4.5vw, 1.25rem) !important; }
   .bottom-bar { font-size: .92rem; }
 
+  .footer-info-hidden .media-caption {
+    right: 6.75rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom));
+    max-width: none;
+  }
+
   .bottom-bar .container-fluid {
     padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)) !important;
   }
@@ -230,6 +265,10 @@ body {
     display: block;
     margin-right: 0 !important;
     white-space: nowrap;
+  }
+
+  .footer-info-hidden .bottom-bar .row {
+    display: flex;
   }
 
   .qr-code img,

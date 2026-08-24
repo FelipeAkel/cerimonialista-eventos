@@ -1,5 +1,5 @@
 const CACHE_PREFIX = "cerimonial-pwa-";
-const CACHE_NAME = `${CACHE_PREFIX}v2`;
+const CACHE_NAME = `${CACHE_PREFIX}v5`;
 
 const APP_SHELL = [
   "./",
@@ -10,7 +10,7 @@ const APP_SHELL = [
   "./assets/js/bootstrap.bundle.js",
   "./assets/js/qrcode.js",
   "./assets/js/app.js",
-  "./assets/img/icone.png",
+  "./assets/img/logomarca.png",
   "./assets/img/icons/icon-192.png",
   "./assets/img/icons/icon-512.png",
   "./assets/img/icons/icon-maskable-512.png"

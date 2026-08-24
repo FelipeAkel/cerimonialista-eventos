@@ -7,19 +7,23 @@
  * title / subtitle: textos opcionais sobre a mídia
  * show: exibe ou oculta title e subtitle (padrão: true)
  * showTime: tempo, em segundos, antes de ocultar title e subtitle
+ * showFooter: exibe ou oculta as informações do rodapé (padrão: true)
+ * O QR Code permanece sempre visível, independentemente de showFooter.
  */
 const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/cerimonial.jpg",
+    showFooter: true,
     duration: 8,
     title: "Transformamos momentos em memórias inesquecíveis",
-    subtitle: "Cerimonial, eventos e celebrações planejadas em cada detalhe."
+    subtitle: "Cerimonial, eventos e celebrações planejadas em cada detalhe.",
   },
 
   {
     type: "video",
     src: "assets/img/videos/laravel-video.mp4",
+    showFooter: false,
     title: "Cerimonial de Casamento",
     subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção.",
     show: true,
@@ -29,6 +33,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/cerimonia-igreja.jpg",
+    showFooter: false,
     title: "Cerimônia Religiosa ou Civil",
     subtitle: "Organização do cortejo, padrinhos, daminhas, alianças, músicos e celebrante."
   },
@@ -36,6 +41,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/recepcao-festa.jpg",
+    showFooter: false,
     title: "Recepção e Festa",
     subtitle: "Coordenamos cada momento para que você aproveite a sua celebração.",
   },
@@ -43,6 +49,7 @@ const playlist = [
   {
     type: "video",
     src: "assets/img/videos/laravel-video.mp4",
+    showFooter: false,
     title: "Planejamento e Assessoria",
     subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento.",
     show: true,
@@ -52,6 +59,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/decoracao.jpg",
+    showFooter: false,
     title: "Decoração e Ambientação",
     subtitle: "Cada detalhe pensado para transformar espaços e contar a sua história."
   },
@@ -59,6 +67,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/dj-musica.jpg",
+    showFooter: false,
     title: "Música e Entretenimento",
     subtitle: "DJ, músicos, bandas, sonorização, iluminação e atrações para sua festa."
   },
@@ -66,6 +75,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/buffet.jpg",
+    showFooter: false,
     title: "Buffet e Gastronomia",
     subtitle: "Buffet, doces, bolo, bebidas, garçons e experiências gastronômicas."
   },
@@ -73,6 +83,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/fotografia.jpg",
+    showFooter: false,
     title: "Fotografia e Filmagem",
     subtitle: "Profissionais para registrar cada sorriso, abraço e emoção."
   },
@@ -80,6 +91,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/fornecedores.jpg",
+    showFooter: false,
     title: "Gestão de Fornecedores",
     subtitle: "Selecionamos e coordenamos profissionais para que tudo aconteça em perfeita sintonia."
   },
@@ -87,6 +99,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/aniversario.jpg",
+    showFooter: false,
     title: "Festas e Celebrações",
     subtitle: "Aniversários, bodas, formaturas, confraternizações e momentos especiais."
   },
@@ -94,6 +107,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/melhores-momentos.jpg",
+    showFooter: false,
     title: "Você celebra. Nós cuidamos dos detalhes.",
     subtitle: "Do planejamento ao último momento da festa."
   },
@@ -101,6 +115,7 @@ const playlist = [
   {
     type: "image",
     src: "assets/img/fotos/contato.jpg",
+    showFooter: true,
     duration: 9,
     title: "Seu próximo momento inesquecível começa aqui",
     subtitle: "Entre em contato e conte-nos como você imagina a sua celebração."
@@ -111,6 +126,14 @@ const stage = document.getElementById("mediaStage");
 const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
 const soundToggle = document.getElementById("soundToggle");
+
+function applyFooterVisibility(showFooter = true) {
+  document.body.classList.toggle("footer-info-hidden", !showFooter);
+
+  document.querySelectorAll(".footer-info").forEach((element) => {
+    element.hidden = !showFooter;
+  });
+}
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -209,6 +232,7 @@ function showItem(index) {
 
   currentIndex = index;
   const item = playlist[currentIndex];
+  applyFooterVisibility(item.showFooter !== false);
   const nextElement = createMediaElement(item);
   stage.appendChild(nextElement);
 
