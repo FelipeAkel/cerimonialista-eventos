@@ -17,108 +17,127 @@ const playlist = [
     showFooter: true,
     duration: 8,
     title: "Transformamos momentos em memórias inesquecíveis",
-    subtitle: "Cerimonial, eventos e celebrações planejadas em cada detalhe.",
+    subtitle: "Cerimonial, assessoria e decoração para que cada detalhe conte a história de vocês.",
   },
 
   {
     type: "video",
     src: "assets/img/videos/laravel-video.mp4",
     showFooter: false,
-    title: "Cerimonial de Casamento",
-    subtitle: "Organização, cuidado e tranquilidade para você viver cada emoção.",
+    title: "Cerimonial e assessoria pré-evento",
+    subtitle: "Planejamento próximo e suporte aos noivos durante toda a preparação do evento.",
     show: true,
     showTime: 7
   },
 
   {
     type: "image",
-    src: "assets/img/fotos/cerimonia-igreja.jpg",
+    src: "assets/img/fotos/cerimonial-casamento.jpg",
     showFooter: false,
-    title: "Cerimônia Religiosa ou Civil",
-    subtitle: "Organização do cortejo, padrinhos, daminhas, alianças, músicos e celebrante."
-  },
-
-  {
-    type: "image",
-    src: "assets/img/fotos/recepcao-festa.jpg",
-    showFooter: false,
-    title: "Recepção e Festa",
-    subtitle: "Coordenamos cada momento para que você aproveite a sua celebração.",
-  },
-
-  {
-    type: "video",
-    src: "assets/img/videos/laravel-video.mp4",
-    showFooter: false,
-    title: "Planejamento e Assessoria",
-    subtitle: "Cronograma, checklist, fornecedores e acompanhamento completo do evento.",
+    title: "Cerimonial e assessoria pré-evento",
+    subtitle: "Planejamento próximo e suporte aos noivos durante toda a preparação do evento.",
     show: true,
     showTime: 7
-  },
-
-  {
-    type: "image",
-    src: "assets/img/fotos/decoracao.jpg",
-    showFooter: false,
-    title: "Decoração e Ambientação",
-    subtitle: "Cada detalhe pensado para transformar espaços e contar a sua história."
-  },
-
-  {
-    type: "image",
-    src: "assets/img/fotos/dj-musica.jpg",
-    showFooter: false,
-    title: "Música e Entretenimento",
-    subtitle: "DJ, músicos, bandas, sonorização, iluminação e atrações para sua festa."
-  },
-
-  {
-    type: "image",
-    src: "assets/img/fotos/buffet.jpg",
-    showFooter: false,
-    title: "Buffet e Gastronomia",
-    subtitle: "Buffet, doces, bolo, bebidas, garçons e experiências gastronômicas."
-  },
-
-  {
-    type: "image",
-    src: "assets/img/fotos/fotografia.jpg",
-    showFooter: false,
-    title: "Fotografia e Filmagem",
-    subtitle: "Profissionais para registrar cada sorriso, abraço e emoção."
   },
 
   {
     type: "image",
     src: "assets/img/fotos/fornecedores.jpg",
     showFooter: false,
-    title: "Gestão de Fornecedores",
-    subtitle: "Selecionamos e coordenamos profissionais para que tudo aconteça em perfeita sintonia."
+    duration: 9,
+    title: "Orçamentos e fornecedores",
+    subtitle: "Solicitamos orçamentos, conduzimos negociações e buscamos parcerias exclusivas com fornecedores."
   },
 
   {
     type: "image",
-    src: "assets/img/fotos/aniversario.jpg",
+    src: "assets/img/fotos/acompanhamento.jpg",
     showFooter: false,
-    title: "Festas e Celebrações",
-    subtitle: "Aniversários, bodas, formaturas, confraternizações e momentos especiais."
+    duration: 9,
+    title: "Visitas e acompanhamento",
+    subtitle: "Agendamos e acompanhamos visitas a fornecedores, reuniões de progresso e o checklist dos noivos.",
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/suporte-online.jpg",
+    showFooter: true,
+    title: "Suporte online",
+    subtitle: "Orientação e acompanhamento para esclarecer dúvidas e apoiar as decisões antes do grande dia.",
+    show: true,
+    showTime: 7
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/recebendo-fornecedores.jpg",
+    showFooter: false,
+    duration: 9,
+    title: "Supervisão no dia do evento",
+    subtitle: "Acompanhamos a montagem, recebemos os fornecedores e supervisionamos a execução dos serviços."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/controle-organizacao.jpg",
+    showFooter: false,
+    duration: 9,
+    title: "Controle e organização",
+    subtitle: "Conferimos serviços na entrega e retirada, como bebidas e doces, e organizamos os pertences dos noivos."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/reservado.jpg",
+    showFooter: false,
+    duration: 9,
+    title: "Recepção dos convidados",
+    subtitle: "Realizamos o protocolo de cumprimentos e a contagem de convidados para o controle do buffet."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/cortejo.jpg",
+    showFooter: false,
+    duration: 9,
+    title: "Assessoria para o cortejo",
+    subtitle: "Orientamos noivos, pais, padrinhos, daminhas e pajens, da preparação às entradas e saídas."
   },
 
   {
     type: "image",
     src: "assets/img/fotos/melhores-momentos.jpg",
     showFooter: false,
-    title: "Você celebra. Nós cuidamos dos detalhes.",
-    subtitle: "Do planejamento ao último momento da festa."
+    duration: 9,
+    title: "Coordenação do cerimonial",
+    subtitle: "Coordenamos os protocolos da cerimônia e da recepção para que cada etapa aconteça no momento certo."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/decoracao.jpg",
+    showFooter: false,
+    duration: 9,
+    title: "Decoração com identidade",
+    subtitle: "Transformamos o ambiente em um cenário marcante, alinhado ao estilo e à história de cada casal."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/recepcao-festa.jpg",
+    showFooter: false,
+    duration: 10,
+    title: "Assessoria e produção da decoração",
+    subtitle: "Arranjos, decoração de móveis e objetos, forração de pisos, paredes e mesas, além de mesa posta."
   },
 
   {
     type: "image",
     src: "assets/img/fotos/equipe-rt-eventos.jpeg",
     showFooter: true,
-    duration: 9,
-    title: "Seu próximo momento inesquecível começa aqui",
-    subtitle: "Entre em contato e conte-nos como você imagina a sua celebração."
+    duration: 10,
+    title: "Programa de Impacto Social",
+    subtitle: "Oferecemos, em um número limitado de eventos por ano, atendimento sem custos a casamentos comunitários, famílias de baixa renda e instituições carentes."
   }
 ];
 
@@ -126,6 +145,17 @@ const stage = document.getElementById("mediaStage");
 const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
 const soundToggle = document.getElementById("soundToggle");
+const appFooter = document.getElementById("appFooter");
+
+function updateFooterHeight() {
+  const footerHeight = appFooter?.getBoundingClientRect().height || 0;
+  document.documentElement.style.setProperty("--footer-height", `${footerHeight}px`);
+}
+
+if (appFooter) {
+  new ResizeObserver(updateFooterHeight).observe(appFooter);
+  updateFooterHeight();
+}
 
 function applyFooterVisibility(showFooter = true) {
   document.body.classList.toggle("footer-info-hidden", !showFooter);

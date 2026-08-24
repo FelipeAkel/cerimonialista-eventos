@@ -59,10 +59,21 @@ body {
 .media-caption {
   position: absolute;
   left: clamp(1.5rem, 4vw, 4rem);
-  bottom: clamp(7.5rem, 16vh, 10rem);
+  bottom: calc(var(--footer-height, 7rem) + clamp(1rem, 3vh, 2rem));
   z-index: 3;
   max-width: min(760px, 75vw);
+  max-height: calc(100dvh - var(--footer-height, 7rem) - clamp(7rem, 18vh, 10rem));
   text-shadow: 0 2px 14px rgba(0,0,0,.65);
+}
+
+.media-caption h2 {
+  font-size: clamp(2rem, min(5vw, 7vh), 3.5rem);
+  line-height: 1.08;
+}
+
+.media-caption p {
+  font-size: clamp(1rem, min(2.2vw, 3.5vh), 1.5rem) !important;
+  line-height: 1.35;
 }
 
 .text-fade {
@@ -246,7 +257,7 @@ body {
   .top-overlay h1 { font-size: 2rem; }
   .media-caption {
     right: 1.25rem;
-    bottom: 7rem;
+    bottom: calc(var(--footer-height, 7rem) + 1rem);
     left: 1.25rem;
     max-width: none;
     overflow-wrap: anywhere;
@@ -301,6 +312,40 @@ body {
   .qr-code canvas {
     width: 120px;
     height: 120px;
+  }
+}
+
+@media (max-height: 500px) {
+  .top-overlay {
+    padding: .75rem 1rem !important;
+  }
+
+  .top-overlay h1 {
+    font-size: 1.5rem;
+  }
+
+  .top-overlay p {
+    font-size: .9rem;
+  }
+
+  .media-caption,
+  .footer-info-hidden .media-caption {
+    top: 5rem;
+    right: 7.5rem;
+    bottom: auto;
+    left: 1rem;
+    max-width: min(760px, calc(100vw - 9.5rem));
+    max-height: calc(100dvh - 6rem);
+  }
+
+  .media-caption h2 {
+    font-size: clamp(1.35rem, 5.5vh, 2rem);
+    margin-bottom: .35rem !important;
+  }
+
+  .media-caption p {
+    font-size: clamp(.85rem, 3.8vh, 1.1rem) !important;
+    line-height: 1.25;
   }
 }
 
