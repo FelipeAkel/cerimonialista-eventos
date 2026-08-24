@@ -114,7 +114,7 @@ const playlist = [
 
   {
     type: "image",
-    src: "assets/img/fotos/contato.jpg",
+    src: "assets/img/fotos/equipe-rt-eventos.jpeg",
     showFooter: true,
     duration: 9,
     title: "Seu próximo momento inesquecível começa aqui",
@@ -357,9 +357,9 @@ const whatsappQrCode = document.getElementById("whatsappQrCode");
 
 if (whatsappQrCode) {
   new QRCode(whatsappQrCode, {
-    text: "https://wa.me/5561991939043",
-    width: 72,
-    height: 72,
+    text: "https://wa.me/5561991091587?text=Ol%C3%A1%2C%20RT%20Eventos%21%20Quero%20informa%C3%A7%C3%B5es.",
+    width: 144,
+    height: 144,
     colorDark: "#000000",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H,
