@@ -52,7 +52,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  z-index: 3;
+  z-index: 10;
   width: min(45vw, 45dvh);
   padding: 12px;
   background: #fff;
