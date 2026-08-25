@@ -173,6 +173,7 @@ const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
 const soundToggle = document.getElementById("soundToggle");
 const appFooter = document.getElementById("appFooter");
+const centeredQrLayer = document.getElementById("centeredQrLayer");
 const footerLogo = document.getElementById("footerLogo");
 const footerName = document.getElementById("footerName");
 const footerTagline = document.getElementById("footerTagline");
@@ -218,6 +219,22 @@ function renderQrCode(container, text, size = 144) {
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H,
   });
+}
+
+function updateCenteredQrCode(item) {
+  if (!centeredQrLayer) return;
+
+  if (!item.centeredQrCode) {
+    centeredQrLayer.hidden = true;
+    return;
+  }
+
+  centeredQrLayer.setAttribute(
+    "aria-label",
+    item.centeredQrCodeLabel || "QR Code"
+  );
+  renderQrCode(centeredQrLayer, item.centeredQrCode, 720);
+  centeredQrLayer.hidden = false;
 }
 
 function updateFooterHeight() {
@@ -323,15 +340,6 @@ function createMediaElement(item) {
     wrapper.appendChild(img);
   }
 
-  if (item.centeredQrCode) {
-    const centeredQrCode = document.createElement("div");
-    centeredQrCode.className = "media-overlay-qr";
-    centeredQrCode.setAttribute("role", "img");
-    centeredQrCode.setAttribute("aria-label", item.centeredQrCodeLabel || "QR Code");
-    wrapper.appendChild(centeredQrCode);
-    renderQrCode(centeredQrCode, item.centeredQrCode, 720);
-  }
-
   const caption = createCaption(item);
   if (caption) wrapper.appendChild(caption);
 
@@ -363,6 +371,7 @@ function showItem(index) {
   currentIndex = index;
   const item = playlist[currentIndex];
   applyFooterVisibility(item.showFooter !== false, item.showDev === true);
+  updateCenteredQrCode(item);
   const nextElement = createMediaElement(item);
   stage.appendChild(nextElement);
 
