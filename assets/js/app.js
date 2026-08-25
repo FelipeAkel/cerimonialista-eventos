@@ -8,8 +8,13 @@
  * show: exibe ou oculta title e subtitle (padrão: true)
  * showTime: tempo, em segundos, antes de ocultar title e subtitle
  * showFooter: exibe ou oculta as informações do rodapé (padrão: true)
+ * showDev: troca os dados da RT Eventos pelos dados do desenvolvedor
+ * centeredQrCode: URL usada para gerar um QR Code no centro da mídia
  * O QR Code permanece sempre visível, independentemente de showFooter.
  */
+const RT_WHATSAPP_URL = "https://wa.me/5561991091587?text=Ol%C3%A1%2C%20RT%20Eventos%21%20Quero%20informa%C3%A7%C3%B5es.";
+const DEV_WHATSAPP_URL = "https://wa.me/5561991939043?text=Ol%C3%A1%2C%20Felipe%20Akel%21";
+
 const playlist = [
   {
     type: "image",
@@ -24,8 +29,8 @@ const playlist = [
     type: "video",
     src: "assets/img/videos/laravel-video.mp4",
     showFooter: false,
-    title: "Cerimonial e assessoria pré-evento",
-    subtitle: "Planejamento próximo e suporte aos noivos durante toda a preparação do evento.",
+    title: "Exemplo Vídeo",
+    subtitle: "Descrição breve do vídeo.",
     show: true,
     showTime: 7
   },
@@ -133,12 +138,34 @@ const playlist = [
 
   {
     type: "image",
-    src: "assets/img/fotos/equipe-rt-eventos.jpeg",
-    showFooter: true,
-    duration: 10,
+    src: "assets/img/fotos/programa-impacto-social.jpg",
+    showFooter: false,
+    duration: 7,
     title: "Programa de Impacto Social",
     subtitle: "Oferecemos, em um número limitado de eventos por ano, atendimento sem custos a casamentos comunitários, famílias de baixa renda e instituições carentes."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/equipe-rt-eventos.jpeg",
+    showFooter: true,
+    duration: 7,
+    title: "Equipe RT Eventos",
+    subtitle: "Profissionais dedicados a tornar cada momento especial."
+  },
+
+  {
+    type: "image",
+    src: "assets/img/fotos/equipe-rt-eventos-2.jpg",
+    centeredQrCode: RT_WHATSAPP_URL,
+    centeredQrCodeLabel: "QR Code de contato da RT Eventos",
+    showFooter: true,
+    showDev: true,
+    duration: 15,
+    title: "Contato RT Eventos",
+    subtitle: "Contato pelo WhatsApp: (61) 99109-1587",
   }
+
 ];
 
 const stage = document.getElementById("mediaStage");
@@ -146,6 +173,52 @@ const progressBar = document.getElementById("mediaProgress");
 const companyInfo = document.getElementById("companyInfo");
 const soundToggle = document.getElementById("soundToggle");
 const appFooter = document.getElementById("appFooter");
+const footerLogo = document.getElementById("footerLogo");
+const footerName = document.getElementById("footerName");
+const footerTagline = document.getElementById("footerTagline");
+const footerInstagram = document.getElementById("footerInstagram");
+const footerWhatsapp = document.getElementById("footerWhatsapp");
+const footerWhatsappText = document.getElementById("footerWhatsappText");
+const footerCtaEyebrow = document.getElementById("footerCtaEyebrow");
+const footerCtaTitle = document.getElementById("footerCtaTitle");
+const footerQrLink = document.getElementById("footerQrLink");
+const whatsappQrCode = document.getElementById("whatsappQrCode");
+
+const footerProfiles = {
+  rt: {
+    name: "RT Eventos",
+    tagline: "Transformamos momentos em memórias inesquecíveis.",
+    whatsappText: "(61) 99109-1587",
+    whatsappUrl: RT_WHATSAPP_URL,
+    whatsappLabel: "Abrir conversa com a RT Eventos no WhatsApp",
+    ctaEyebrow: "Planejando um evento?",
+    ctaTitle: "Solicite seu orçamento",
+  },
+  dev: {
+    name: "Desenvolvido por Felipe Akel",
+    tagline: "Desenvolvimento web",
+    whatsappText: "WhatsApp: (61) 99193-9043",
+    whatsappUrl: DEV_WHATSAPP_URL,
+    whatsappLabel: "Abrir conversa com Felipe Akel no WhatsApp",
+    ctaEyebrow: "Projeto desenvolvido por",
+    ctaTitle: "Felipe Akel",
+  },
+};
+
+function renderQrCode(container, text, size = 144) {
+  if (!container || container.dataset.qrText === text) return;
+
+  container.replaceChildren();
+  container.dataset.qrText = text;
+  new QRCode(container, {
+    text,
+    width: size,
+    height: size,
+    colorDark: "#000000",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H,
+  });
+}
 
 function updateFooterHeight() {
   const footerHeight = appFooter?.getBoundingClientRect().height || 0;
@@ -157,12 +230,30 @@ if (appFooter) {
   updateFooterHeight();
 }
 
-function applyFooterVisibility(showFooter = true) {
+function applyFooterVisibility(showFooter = true, showDev = false) {
   document.body.classList.toggle("footer-info-hidden", !showFooter);
 
   document.querySelectorAll(".footer-info").forEach((element) => {
     element.hidden = !showFooter;
   });
+
+  const profile = showDev ? footerProfiles.dev : footerProfiles.rt;
+  if (footerLogo) footerLogo.hidden = showDev;
+  if (footerName) footerName.textContent = profile.name;
+  if (footerTagline) footerTagline.textContent = profile.tagline;
+  if (footerInstagram) footerInstagram.hidden = !showFooter || showDev;
+  if (footerWhatsapp) {
+    footerWhatsapp.href = profile.whatsappUrl;
+    footerWhatsapp.setAttribute("aria-label", profile.whatsappLabel);
+  }
+  if (footerWhatsappText) footerWhatsappText.textContent = profile.whatsappText;
+  if (footerCtaEyebrow) footerCtaEyebrow.textContent = profile.ctaEyebrow;
+  if (footerCtaTitle) footerCtaTitle.textContent = profile.ctaTitle;
+  if (footerQrLink) {
+    footerQrLink.href = profile.whatsappUrl;
+    footerQrLink.setAttribute("aria-label", profile.whatsappLabel);
+  }
+  renderQrCode(whatsappQrCode, profile.whatsappUrl);
 }
 
 if ("serviceWorker" in navigator) {
@@ -232,6 +323,15 @@ function createMediaElement(item) {
     wrapper.appendChild(img);
   }
 
+  if (item.centeredQrCode) {
+    const centeredQrCode = document.createElement("div");
+    centeredQrCode.className = "media-overlay-qr";
+    centeredQrCode.setAttribute("role", "img");
+    centeredQrCode.setAttribute("aria-label", item.centeredQrCodeLabel || "QR Code");
+    wrapper.appendChild(centeredQrCode);
+    renderQrCode(centeredQrCode, item.centeredQrCode, 720);
+  }
+
   const caption = createCaption(item);
   if (caption) wrapper.appendChild(caption);
 
@@ -262,7 +362,7 @@ function showItem(index) {
 
   currentIndex = index;
   const item = playlist[currentIndex];
-  applyFooterVisibility(item.showFooter !== false);
+  applyFooterVisibility(item.showFooter !== false, item.showDev === true);
   const nextElement = createMediaElement(item);
   stage.appendChild(nextElement);
 
@@ -382,18 +482,5 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight" || event.key === " ") nextItem();
   if (event.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
 });
-
-const whatsappQrCode = document.getElementById("whatsappQrCode");
-
-if (whatsappQrCode) {
-  new QRCode(whatsappQrCode, {
-    text: "https://wa.me/5561991091587?text=Ol%C3%A1%2C%20RT%20Eventos%21%20Quero%20informa%C3%A7%C3%B5es.",
-    width: 144,
-    height: 144,
-    colorDark: "#000000",
-    colorLight: "#ffffff",
-    correctLevel: QRCode.CorrectLevel.H,
-  });
-}
 
 startPresentation();
